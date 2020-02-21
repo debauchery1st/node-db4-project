@@ -22,10 +22,17 @@ function getInstructions(recipe_id) {
 }
 
 function getShoppingList(recipe_id) {
-  return db("ingredients")
-    .innerJoin("measure", "ingredients.measure_id", "measure.id")
-    .innerJoin("mass", "measure.mass_id", "mass.id")
-    .innerJoin("element", "measure.element.id", "element.id")
-    .innerJoin("category", "element.category_id", "category.id")
-    .where({ recipe_id });
+  return db
+    .select(
+      "measure.amount as amount",
+      "mass.type as measurement",
+      "element.name as name",
+      "category.name as category"
+    )
+    .from("ingredients")
+    .innerJoin("measure", "measure_id", "measure.id")
+    .innerJoin("mass", "mass_id", "mass.id")
+    .innerJoin("element", "element_id", "element.id")
+    .innerJoin("category", "category_id", "category.id")
+    .where({ "ingredients.recipe_id": recipe_id });
 }
