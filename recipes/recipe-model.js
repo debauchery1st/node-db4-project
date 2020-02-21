@@ -4,7 +4,9 @@ module.exports = {
   getInstructions,
   getShoppingList,
   getRecipeById,
-  getRecipes
+  getRecipes,
+  addRecipe,
+  updateRecipe
 };
 
 function getRecipes() {
@@ -37,4 +39,14 @@ function getShoppingList(recipe_id) {
     .innerJoin("element", "element_id", "element.id")
     .innerJoin("category", "category_id", "category.id")
     .where({ "ingredients.recipe_id": recipe_id });
+}
+
+function addRecipe(recipe) {
+  return db("recipe").insert(recipe, "id");
+}
+
+function updateRecipe(newRecipe, id) {
+  return getRecipeById(id).then(oldRecipe =>
+    db("recipe").update({ ...oldRecipe[0], ...newRecipe })
+  );
 }

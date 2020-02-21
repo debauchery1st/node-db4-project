@@ -4,10 +4,18 @@ const Recipes = require("./recipe-model.js");
 
 const router = express.Router();
 
+router.post("/", (req, res) => {
+  Recipes.addRecipe(req.body, "id").then(arrayOfOne =>
+    Recipes.getRecipeById(arrayOfOne[0]).then(rcp => {
+      res.status(201).json(rcp);
+    })
+  );
+});
+
 router.get("/", (req, res) => {
   Recipes.getRecipes()
     .then(recipes => {
-      res.json(recipes);
+      res.status(200).json(recipes);
     })
     .catch(err => {
       res.status(500).json({ message: "Failed to get recipes" });
@@ -20,7 +28,7 @@ router.get("/:id", (req, res) => {
   Recipes.getRecipeById(id)
     .then(recipe => {
       if (recipe) {
-        res.json(recipe);
+        res.status(200).json(recipe);
       } else {
         res.status(404).json(recipe);
       }
