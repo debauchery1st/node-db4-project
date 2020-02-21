@@ -8,16 +8,16 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("mass")
-      .onDelete("RESTRICT");
+      .inTable("mass");
+    // .onDelete("");
     // foreign key
     tbl
       .integer("category_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("category")
-      .onDelete("RESTRICT");
+      .inTable("category");
+    // .onDelete("RESTRICT");
     // element
   });
 };

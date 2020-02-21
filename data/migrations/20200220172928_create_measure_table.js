@@ -10,15 +10,15 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("element")
-      .onDelete("RESTRICT");
+      .inTable("element");
+    // .onDelete("RESTRICT");
     tbl
       .integer("mass_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("mass")
-      .onDelete("RESTRICT");
+      .inTable("mass");
+    // .onDelete("RESTRICT");
   });
 };
 

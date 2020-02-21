@@ -5,15 +5,15 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("measure")
-      .onDelete("RESTRICT");
+      .inTable("measure");
+    // .onDelete("RESTRICT");
     tbl
       .integer("recipe_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("recipe")
-      .onDelete("RESTRICT");
+      .inTable("recipe");
+    // .onDelete("RESTRICT");
   });
 };
 
