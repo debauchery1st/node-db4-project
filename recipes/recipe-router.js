@@ -53,4 +53,25 @@ router.get("/:id/instructions", (req, res) => {
   });
 });
 
+router.get("/:id/details", (req, res) => {
+  const { id } = req.params;
+  const details = {
+    recipe: [],
+    shoppingList: [],
+    instructions: []
+  };
+  Recipes.getRecipeById(id)
+    .then(rcp => {
+      details.recipe = rcp;
+      Recipes.getShoppingList(id).then(lst => {
+        details.shoppingList = lst;
+        Recipes.getInstructions(id).then(stps => {
+          details.instructions = stps;
+          res.status(200).json(details);
+        });
+      });
+    })
+    .catch(errors => res.status(400).json({ error: errors }));
+});
+
 module.exports = router;
