@@ -9,7 +9,7 @@ exports.up = function(knex) {
       .notNullable()
       .references("id")
       .inTable("mass");
-    // .onDelete("");
+    // .onDelete(`DO NOTHING`);
     // foreign key
     tbl
       .integer("category_id")
@@ -17,7 +17,7 @@ exports.up = function(knex) {
       .notNullable()
       .references("id")
       .inTable("category");
-    // .onDelete("RESTRICT");
+    // .onDelete(`DO NOTHING`);
     // element
   });
 };

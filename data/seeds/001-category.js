@@ -14,7 +14,8 @@ exports.seed = function(knex) {
         { id: 7, name: "Nuts" },
         { id: 8, name: "Oil" },
         { id: 9, name: "Spices" },
-        { id: 10, name: "Bread" }
+        { id: 10, name: "Bread" },
+        { id: 11, name: "Dairy" }
       ]);
     });
 };
