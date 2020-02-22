@@ -12,6 +12,13 @@ router.post("/", (req, res) => {
   );
 });
 
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  Recipes.updateRecipe(req.body, id)
+    .then(upd => res.status(200).json(upd))
+    .catch(errors => res.status(400).json({ error: errors }));
+});
+
 router.get("/", (req, res) => {
   Recipes.getRecipes()
     .then(recipes => {

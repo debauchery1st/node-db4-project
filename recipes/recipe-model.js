@@ -45,8 +45,12 @@ function addRecipe(recipe) {
   return db("recipe").insert(recipe, "id");
 }
 
-function updateRecipe(newRecipe, id) {
-  return getRecipeById(id).then(oldRecipe =>
-    db("recipe").update({ ...oldRecipe[0], ...newRecipe })
-  );
+function updateRecipe(rcp, id) {
+  if (!id) {
+    return { error: "id required" };
+  }
+  return db("recipe")
+    .update(rcp)
+    .where({ id })
+    .then(() => getRecipeById(id));
 }
