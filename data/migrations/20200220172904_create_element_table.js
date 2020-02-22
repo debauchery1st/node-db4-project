@@ -6,7 +6,6 @@ exports.up = function(knex) {
     tbl
       .integer("common_mass")
       .unsigned()
-      .notNullable()
       .references("id")
       .inTable("mass");
     // .onDelete(`DO NOTHING`);
@@ -14,7 +13,6 @@ exports.up = function(knex) {
     tbl
       .integer("category_id")
       .unsigned()
-      .notNullable()
       .references("id")
       .inTable("category");
     // .onDelete(`DO NOTHING`);
