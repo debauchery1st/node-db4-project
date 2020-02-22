@@ -1,9 +1,10 @@
 {
-  "name": "node-db4-project",
+  "name": "recipe-book-api",
   "version": "1.0.0",
   "description": "## Topics",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "server": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
