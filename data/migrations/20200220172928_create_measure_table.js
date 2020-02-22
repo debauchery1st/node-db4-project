@@ -1,10 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("measure", tbl => {
     tbl.increments();
-    tbl
-      .integer("amount")
-      .unsigned()
-      .notNullable();
+    tbl.float("amount").notNullable();
     tbl
       .integer("element_id")
       .unsigned()
@@ -22,4 +19,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {};
+exports.down = function(knex) {
+  knex.schema.dropTableIfExists("measure");
+};

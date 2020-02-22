@@ -20,4 +20,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {};
+exports.down = function(knex) {
+  knex.schema.dropTableIfExists("element");
+};
