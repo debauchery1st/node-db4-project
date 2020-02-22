@@ -6,7 +6,8 @@ module.exports = {
   getRecipeById,
   getRecipes,
   addRecipe,
-  updateRecipe
+  updateRecipe,
+  removeRecipe
 };
 
 function getRecipes() {
@@ -53,4 +54,13 @@ function updateRecipe(rcp, id) {
     .update(rcp)
     .where({ id })
     .then(() => getRecipeById(id));
+}
+
+function removeRecipe(id) {
+  return getRecipeById(id).then(toBeDeleted => {
+    return db("recipe")
+      .del()
+      .where({ id })
+      .then(() => toBeDeleted);
+  });
 }

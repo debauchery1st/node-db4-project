@@ -89,4 +89,10 @@ router.get("/:id/details", (req, res) => {
     .catch(errors => res.status(400).json({ error: errors }));
 });
 
+router.delete("/:id", (req, res) => {
+  Recipes.removeRecipe(req.params.id)
+    .then(rcp => res.status(200).json({ removed: rcp }))
+    .catch(error => res.status(200).json(error));
+});
+
 module.exports = router;
